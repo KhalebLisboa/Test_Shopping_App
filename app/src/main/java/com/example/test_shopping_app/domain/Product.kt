@@ -1,6 +1,6 @@
 package com.example.test_shopping_app.domain
 
-class Product(
+data class Product(
     var name : String?,
     var color : String?,
     var on_sale : Boolean,
