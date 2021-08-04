@@ -5,17 +5,18 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class SaleApi(){
 
-    companion object {
-        private var INSTANCE: Retrofit? = null
-
-        fun getInstance(): Retrofit? {
+    var INSTANCE: Retrofit? = null
+        fun getInstance() : Retrofit{
             if (INSTANCE == null) {
                 INSTANCE = Retrofit.Builder()
                     .baseUrl("http://www.mocky.io/v2/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
             }
-            return INSTANCE
-        }
+            return INSTANCE!!
+    }
+
+    fun service() : SaleService{
+        return getInstance().create(SaleService::class.java)
     }
 }
