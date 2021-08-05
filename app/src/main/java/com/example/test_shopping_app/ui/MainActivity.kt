@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.test_shopping_app.R
 import com.example.test_shopping_app.data.SaleApi
 import com.example.test_shopping_app.databinding.ActivityMainBinding
@@ -21,6 +25,9 @@ class MainActivity : AppCompatActivity() {
     private val liveData = MutableLiveData<Response<Products>>()
     private lateinit var view: View
 
+    private val _showToast: MutableLiveData<Boolean> = MutableLiveData()
+    val showToast: LiveData<Boolean> = _showToast
+
     lateinit var bind: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,12 +36,26 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
 
-
-
-        bind.frase.text = "mudou o valor"
+//        bind.toolbar.setupWithNavController(findNavController(R.id.action_mainFragment_to_informationFragment))
 
         getRequisition()
+        setupObservers()
+    }
 
+
+    private fun getRequisition() {
+     CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = SaleApi().service().fetchSale()
+                liveData.postValue(response)
+            } catch (e: Exception) {
+                _showToast.postValue(true)
+            }
+        }
+    }
+
+
+    private fun setupObservers() {
 
         liveData.observe(this, {
 
@@ -47,18 +68,10 @@ class MainActivity : AppCompatActivity() {
 
             }
         })
-    }
 
-
-    private fun getRequisition() {
-        try {
-            CoroutineScope(Dispatchers.IO).launch {
-                val resposta = SaleApi().service().fetchSale()
-                liveData.postValue(resposta)
-            }
-        } catch (e: Exception) {
-            Toast.makeText(applicationContext, "Falha ", Toast.LENGTH_LONG).show()
-        }
+        showToast.observe(this, {
+            if (it) Toast.makeText(applicationContext, "Falha", Toast.LENGTH_LONG).show()
+        })
     }
 }
 

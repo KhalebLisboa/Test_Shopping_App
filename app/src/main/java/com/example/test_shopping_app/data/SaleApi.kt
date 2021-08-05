@@ -5,8 +5,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class SaleApi(){
 
-    var INSTANCE: Retrofit? = null
-        fun getInstance() : Retrofit{
+    private var INSTANCE: Retrofit? = null
+        private fun getInstance() : Retrofit{
             if (INSTANCE == null) {
                 INSTANCE = Retrofit.Builder()
                     .baseUrl("http://www.mocky.io/v2/")
