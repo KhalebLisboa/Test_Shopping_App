@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:text="Descrição gigante do produto acima"
+            app:layout_constraintBottom_toBottomOf="@id/txt_price"
+            app:layout_constraintLeft_toLeftOf="@id/image_product"
+            app:layout_constraintRight_toLeftOf="@id/txt_price"
+            app:layout_constraintTop_toTopOf="@id/txt_price" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/txt_price"
+            android:layout_width="wrap_content"
+            android:layout_height="33dp"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/white"
+            android:clickable="false"
+            android:text="R$ 1200,00"
+            android:textColor="@color/black"
+            android:textSize="11sp"
+            app:layout_constraintLeft_toRightOf="@id/txt_description"
+            app:layout_constraintRight_toRightOf="@id/image_product"
+            app:layout_constraintTop_toBottomOf="@id/image_product"
+            app:strokeColor="@color/black"
+            app:strokeWidth="1dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_add_chart"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="#FF6600"
+            android:text="Adicionar ao carrinho"
+            app:layout_constraintLeft_toLeftOf="@id/image_product"
+            app:layout_constraintRight_toRightOf="@id/image_product"
+            app:layout_constraintTop_toBottomOf="@id/txt_price" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

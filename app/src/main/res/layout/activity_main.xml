@@ -24,6 +24,16 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:text="Exemplo de texto"/>
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container_view_tag"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/navcontroller"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

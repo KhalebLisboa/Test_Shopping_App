@@ -38,40 +38,8 @@ class MainActivity : AppCompatActivity() {
 
 //        bind.toolbar.setupWithNavController(findNavController(R.id.action_mainFragment_to_informationFragment))
 
-        getRequisition()
-        setupObservers()
+
     }
 
-
-    private fun getRequisition() {
-     CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val response = SaleApi().service().fetchSale()
-                liveData.postValue(response)
-            } catch (e: Exception) {
-                _showToast.postValue(true)
-            }
-        }
-    }
-
-
-    private fun setupObservers() {
-
-        liveData.observe(this, {
-
-            bind.frase.setText(it.body()?.products?.get(0)?.name)
-
-            if (it.isSuccessful) {
-                Toast.makeText(applicationContext, "Foi ", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(applicationContext, "Foi não ", Toast.LENGTH_LONG).show()
-
-            }
-        })
-
-        showToast.observe(this, {
-            if (it) Toast.makeText(applicationContext, "Falha", Toast.LENGTH_LONG).show()
-        })
-    }
 }
 
