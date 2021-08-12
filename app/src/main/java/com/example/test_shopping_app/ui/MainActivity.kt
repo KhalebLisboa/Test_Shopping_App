@@ -36,9 +36,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
 
-//        bind.toolbar.setupWithNavController(findNavController(R.id.action_mainFragment_to_informationFragment))
-
-
     }
 
 }

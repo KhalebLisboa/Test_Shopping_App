@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test_shopping_app.R
 import com.example.test_shopping_app.domain.Product
@@ -32,6 +35,11 @@ class RecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        holder.itemView.setOnClickListener {
+            it.findNavController().navigate(R.id.action_mainFragment_to_informationFragment)
+        }
+
         holder.txtName.text = products[position].name
         holder.txtPrice.text = products[position].actual_price
 
